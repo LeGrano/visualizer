@@ -1,0 +1,95 @@
+body{
+    background: rgb(46, 46, 46);
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f100; 
+}
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #cccccc; 
+}
+#identified{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#identified>div{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+    width: 120px;
+}
+#identified>#track-search{
+    padding: 10px 10px;
+    min-width: 200px;
+    width: 15%;
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: solid #d8d8d8 2px;
+    color: #d8d8d8;
+    font-size: medium;
+}
+.profile-pic{
+    border-radius: 100%;
+    height: 100%;
+}
+#tracks-container{
+    height: 60vh;
+    overflow-y: auto;
+    width: 70%;
+    min-width:800px;
+}
+#tracks-container>*{
+    color: #f1f1f1;
+}
+#tracks-container>div{
+    display: flex;
+    height: 20%;
+    align-items: center;
+    border-bottom: 1px solid white;
+    margin: 5px;
+    padding: 5px 10px;
+}
+#tracks-container>div>div, #tpl-album-pic{
+    height: 95%;
+}
+#unidentified{
+    background: none;
+    color: #f1f1f1;
+    border: #f1f1f1 1px solid;
+    padding: 10px 15px;
+    border-radius: 45px;
+    font-size: medium;
+    cursor: pointer
+}
+#unidentified:hover{
+    color: rgb(46, 46, 46);
+    background-color: #f1f1f1;
+}
+#tracks-container>div>div{
+    display: flex;
+    align-items: center;
+    width: 33%;
+}
+#tracks-container p{
+    margin-left:10px;
+}
+.tpl-play-btn{
+    margin: 0 25px 0 auto;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #f1f1f1;
+    width: 45px;
+    height: 45px;
+    font-size: 35px;
+}
+#tpl-track-name{
+    font-weight: 600;
+}

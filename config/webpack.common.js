@@ -6,9 +6,10 @@ const paths = require('./paths')
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: {spotify: [paths.src + '/spotify.js'],
-          visualizer: [paths.src + '/app.js']
-},
+  // entry: {spotify: [paths.src + '/spotify.js'],
+  //         visualizer: [paths.src + '/app.js']
+  entry: [paths.src + '/index.js'],
+//},
 
   // Where webpack outputs the assets and bundles
   output: {
@@ -57,7 +58,11 @@ module.exports = {
     rules: [
       // JavaScript: Use Babel to transpile JavaScript files
       { test: /\.js$/, use: ['babel-loader'] },
-
+      //Ajout css
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg|mp3|wav)$/i, type: 'asset/resource' },
 
@@ -77,4 +82,5 @@ module.exports = {
       assets: paths.public,
     },
   },
+
 }

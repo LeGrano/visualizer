@@ -3,5 +3,49 @@
   src: url('../fonts/Inter.ttf');
 }
 
-@import 'variables';
-@import 'scaffolding';
+// @import 'variables';
+// @import 'scaffolding';
+
+body {
+  background: rgb(46, 46, 46);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cccccc;
+}
+
+#identified {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > div {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      justify-content: space-between;
+      width: 120px;
+  }
+
+  > #track-search {
+      padding: 10px 10px;
+      min-width: 200px;
+      width: 15%;
+      background-color: #ffffff00;
+      border: none;
+      border-bottom: solid #d8d8d8 2px;
+      color: #d8d8d8;
+  }
+}

@@ -54,10 +54,10 @@ class Visualizer {
   
 }
 
-const startVisualizer = async() => {
+const startVisualizer = async(audioUrl) => {
   console.log(window.location.pathname);
-  if (window.location.pathname === '/visualizer.html') {
-    await initEngine()
+  //if (window.location.pathname === '/visualizer.html') {
+  
   const scene = useScene()
   const camera = useCamera()
   const gui = useGui()
@@ -91,7 +91,7 @@ const startVisualizer = async() => {
 
   const visualizer = new Visualizer(ico, 'uAudioFrequency')
 
-  visualizer.load(PATH)
+  visualizer.load(audioUrl)
 
   scene.add(ico)
 
@@ -136,11 +136,7 @@ const startVisualizer = async() => {
 
   })
 
-
-  }else {
-    console.log('pas visual')
-  }
  
 }
 
-startVisualizer()
+export default startVisualizer

@@ -4,14 +4,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <script src="spotify.bundle.js"></script>
+  
+    <script src="spotify.bundle.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
 
   <body>
-    <h1>Bienvenue sur notre projet de visualisation de musique</h1>
+    
+    <header>
+      <button id="unidentified">Connexion à Spotify</button>
+      <section id="identified">
+          <input id="track-search" placeholder="Rechercher un morceau" type="text">
+          <div style="display: none;">             
+              <p></p>
+              <img class="profile-pic" src="">
+          </div>
+      </section>
+  </header>
+  <h1>Bienvenue sur notre projet de visualisation de musique</h1>
     <a href="visualizer.html">VOir le visualizer</a>
     <div id="root"></div>
-  
+  <div id="tracks-container"></div>
+
+  <template id="track-template">
+      <div>  
+          <div>           
+              <img id="tpl-album-pic">
+              <p id="tpl-track-name"></p>
+          </div>
+          <p id="tpl-album-name"></p>
+          <p id="tpl-artist-name"></p>
+          <div  class="tpl-play-btn"><a id="tpl-play-btn">Visualiser</a></div>
+      </div>
+  </template>
   </body>
 </html>
