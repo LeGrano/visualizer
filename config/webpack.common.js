@@ -6,7 +6,9 @@ const paths = require('./paths')
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.js'],
+  entry: {spotify: [paths.src + '/spotify.js'],
+          visualizer: [paths.src + '/app.js']
+},
 
   // Where webpack outputs the assets and bundles
   output: {
@@ -38,11 +40,16 @@ module.exports = {
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      title: 'Three Webpack Boilerplate',
+      title: 'Accueil',
       favicon: paths.src + '/images/favicon.ico',
       template: paths.src + '/template.html', // template file
       filename: 'index.html', // output file
     }),
+    new HtmlWebpackPlugin({
+      title: 'Visualizer',
+      template: paths.src + '/visualizer-template.html',
+      filename: 'visualizer.html',
+    })
   ],
 
   // Determine how modules within the project are treated
