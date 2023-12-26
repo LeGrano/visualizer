@@ -1,4 +1,4 @@
-import { useCamera, useComposer, useControls, useRenderer, useScene, useStats } from './init.js';
+import { useCamera, useComposer, useControls, useRenderer, useScene } from './init.js';
 
 // animation params
 const localData = {
@@ -26,7 +26,6 @@ class TickManager extends EventTarget {
         const scene = useScene();
         const camera = useCamera();
         const controls = useControls();
-        const stats = useStats();
 
         if (!renderer) {
             throw new Error('Updating Frame Failed : Uninitialized Renderer');
@@ -49,7 +48,6 @@ class TickManager extends EventTarget {
 
             this.tick(timestamp, timeDiffCapped, frame);
 
-            stats.update();
 
             // performance tracker end
         };

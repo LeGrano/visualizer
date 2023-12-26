@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { initEngine } from './render/init';
-import { addPass, useCamera, useGui, useRenderSize, useScene, useTick } from './render/init.js'
+import { addPass, useCamera, useRenderSize, useScene, useTick } from './render/init.js'
 // import postprocessing passes
 import { SavePass } from 'three/examples/jsm/postprocessing/SavePass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
@@ -39,16 +39,19 @@ class Visualizer {
 
   update() {
     const freq = Math.max(this.getFrequency() - 100, 0) / 50
+    const freqToDisplay = Math.max(this.getFrequency(),0);
     this.mesh.material.uniforms[this.frequencyUniformName].value = freq
-  
+
     this.analyser.fftSize = 256
     const bufferLength = this.analyser.frequencyBinCount
     let dataArray = new Uint8Array(bufferLength)
-  
+
     // Mettez à jour dataArray avec les données de fréquence.
     dataArray = this.analyser.getFrequencyData();
-    
-    //console.log(dataArray); 
+
+    // Afficher la valeur de l'uniform de la fréquence dans l'élément <p> avec l'ID "freq".
+    const freqElement = document.getElementById("freq");
+    freqElement.textContent = freqToDisplay.toFixed(2); // Vous pouvez ajuster le nombre de décimales selon vos besoins.
   }
   
   
@@ -60,7 +63,7 @@ const startVisualizer = async(audioUrl) => {
   
   const scene = useScene()
   const camera = useCamera()
-  const gui = useGui()
+  //const gui = useGui()
   const { width, height } = useRenderSize()
 
   const ROTATION_SPEED = 0.02
@@ -96,9 +99,9 @@ const startVisualizer = async(audioUrl) => {
   scene.add(ico)
 
   // GUI
-  const cameraFolder = gui.addFolder('Camera')
-  cameraFolder.add(camera.position, 'z', 0, 10)
-  cameraFolder.open()
+  // const cameraFolder = gui.addFolder('Camera')
+  // cameraFolder.add(camera.position, 'z', 0, 10)
+  // cameraFolder.open()
 
   // postprocessing
   const renderTargetParameters = {
@@ -129,7 +132,7 @@ const startVisualizer = async(audioUrl) => {
     ico.rotation.y += ROTATION_SPEED
   }
 
-  useTick(({ timestamp, timeDiff }) => {
+  useTick(({ timestamp }) => {
     material.uniforms.uTime.value = timestamp / 1000
  
     visualizer.update()

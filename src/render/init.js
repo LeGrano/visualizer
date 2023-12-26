@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
-import Stats from 'three/examples/jsm/libs/stats.module.js'
+//import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'
+//import Stats from 'three/examples/jsm/libs/stats.module.js'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import TickManager from './tick-manager.js'
@@ -11,8 +11,6 @@ let scene,
   renderer,
   composer,
   controls,
-  stats,
-  gui,
   renderWidth,
   renderHeight,
   renderAspectRatio
@@ -27,7 +25,7 @@ export const initEngine = async () => {
   renderAspectRatio = renderWidth / renderHeight
 
   camera = new THREE.PerspectiveCamera(75, renderAspectRatio, 0.1, 100)
-  camera.position.z = 2
+  camera.position.z = 3
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(renderWidth, renderHeight)
@@ -47,10 +45,7 @@ export const initEngine = async () => {
   const renderPass = new RenderPass(scene, camera)
   composer.addPass(renderPass)
 
-  stats = Stats()
-  document.body.appendChild(stats.dom)
 
-  gui = new GUI()
 
   controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
@@ -86,11 +81,10 @@ export const useCamera = () => camera
 
 export const useControls = () => controls
 
-export const useStats = () => stats
+
 
 export const useComposer = () => composer
 
-export const useGui = () => gui
 
 export const addPass = (pass) => {
   composer.addPass(pass)

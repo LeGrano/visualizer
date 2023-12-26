@@ -10,9 +10,10 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
 
-  <body>
+  <body id="spotify-body">
     
     <header>
+      <h1 id="titre-app">MMI Music Visualiser</h1>
       <button id="unidentified">Connexion à Spotify</button>
       <section id="identified">
           <input id="track-search" placeholder="Rechercher un morceau" type="text">
@@ -22,21 +23,25 @@
           </div>
       </section>
   </header>
-  <h1>Bienvenue sur notre projet de visualisation de musique</h1>
-    <a href="visualizer.html">VOir le visualizer</a>
+  
+   
     <div id="root"></div>
   <div id="tracks-container"></div>
 
   <template id="track-template">
-      <div>  
-          <div>           
-              <img id="tpl-album-pic">
-              <p id="tpl-track-name"></p>
+    <div>
+      <div id="img-with-infos">
+          <img id="tpl-album-pic">
+          <div id="track-infos">
+            <p id="tpl-track-name"></p>
+            <p id="tpl-album-name"></p>
+            <p id="tpl-artist-name"></p>
           </div>
-          <p id="tpl-album-name"></p>
-          <p id="tpl-artist-name"></p>
-          <div  class="tpl-play-btn"><a id="tpl-play-btn">Visualiser</a></div>
       </div>
+      <div  class="tpl-play-btn">
+        <a id="tpl-play-btn">Visualiser</a>
+      </div>
+    </div>
   </template>
   </body>
 </html>
