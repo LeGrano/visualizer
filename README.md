@@ -2,8 +2,13 @@
  Par Samuel Juanola et Dorian Engelvin
 
 Ce projet de visualiseur 3D connecté à Spotify utilise webpack, jquery, l'API Spotify et surtout ThreeJS.
-Le projet se base sur le repo de Visionnary3D : 
-https://github.com/visionary-3d/morphing-visualizer-starter
+Le projet se base sur le repo de Visionnary3D :  
+https://github.com/visionary-3d/morphing-visualizer-starter  
+  
+La partie spotify est fait par Dorian et la partie ThreeJS par Samuel.  
+La combinaison du code, le style et le setup de webpack ont étées faites ensemble.
+
+> :warning: **Des erreurs peuvent survenir lors de l'installation**: On ne sait pas encore ce qui en est la cause merci de nous prévenir si cela vous arrive.
 
 ## Installation
 
