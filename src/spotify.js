@@ -1,14 +1,19 @@
 
-
+/**
+ * Fonction à lancer pour la page d'accueil.
+ * Appelle l'API Spotify pour récupérer les informations de l'utilisateur et les musiques que l'on recherche pour les envoyer à l'initialiseur.
+ */
 const startAccueilSpotify = () => {
     //code spotify dorian ici
-    console.log('test function');
-
+    
+    // const pour l'api spotify
     const clientId = '5fbe65d0e2d04d7ea42ad55995d78174';
     const redirectUri = 'http://localhost:8080';
     const scopes = 'user-top-read';
-    const body = document.querySelector("body");
     
+    /**
+     * Fonction qui redirige vers la page d'autorisation Spotify.
+     */
     function authorizeSpotify() {
         const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}`;
         window.location.href = authorizeUrl;
@@ -18,7 +23,10 @@ const startAccueilSpotify = () => {
     
     button.onclick = authorizeSpotify;
     
-    // Function to extract access token from URL hash
+    /**
+     * Fonction pour récuperer le token d'authentification de l'utilisateur.
+     * @returns {string} - L'access token de l'utilisateur
+     */
     function getAccessTokenFromUrl() {
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
@@ -42,27 +50,13 @@ const startAccueilSpotify = () => {
             console.error('Error fetching user info:', error);
         });
     }
-    
-    function GetTracks(mytoken) {
-        const endpoint = 'https://api.spotify.com/v1/me/top/tracks';
-        const time_range = 'short_term';
-        const limit = 5;
-        const token = mytoken;
-      
-        return fetch(`${endpoint}?time_range=${time_range}&limit=${limit}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            return data;
-          })
-          .catch((error) => {
-            throw error;
-          });
-    }
-    
+
+    /**
+     * Fonction de recherche du morceau sur l'API Spotify
+     * @param {string} trackName - Le nom de la musique à rechercher (présent dans l'input)
+     * @param {string} accessToken - Le token d'authentification de l'utilisateur
+     * @returns 
+     */
     function searchTrackByName(trackName, accessToken) {
         const endpoint = 'https://api.spotify.com/v1/search';
         const token = accessToken;
@@ -112,6 +106,9 @@ const startAccueilSpotify = () => {
           });
     }
     
+    /**
+     * Fonction qui récupère le token d'authentification de l'utilisateur et qui lance la recherche de musique.
+     */
     window.onload = function () {
         const accessToken = getAccessTokenFromUrl();
         if (accessToken) {
@@ -126,10 +123,10 @@ const startAccueilSpotify = () => {
         }); 
     };
     
-    var currentTrack; // Déclarez la variable en dehors de la fonction pour qu'elle soit globale
+    let currentTrack; // Déclarez la variable en dehors de la fonction pour qu'elle soit globale
     
     $(document).on("click", ".tpl-play-btn", function () {
-      var audioElement = new Audio($(this).val());
+      let audioElement = new Audio($(this).val());
     
       if (currentTrack && currentTrack !== audioElement) {
         currentTrack.pause(); // Arrêtez la lecture du son précédent

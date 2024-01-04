@@ -16,6 +16,10 @@ let scene,
   renderAspectRatio
 const renderTickManager = new TickManager()
 
+
+/**
+ * Fonction qui initialise le moteur three.js
+ */
 export const initEngine = async () => {
   scene = new THREE.Scene()
 
@@ -30,7 +34,7 @@ export const initEngine = async () => {
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setSize(renderWidth, renderHeight)
   renderer.setPixelRatio(window.devicePixelRatio * 1.5)
-  renderer.setClearColor(0x00022a)
+  renderer.setClearColor(0x2E2E2E)
 
   // shadow
   renderer.shadowMap.enabled = true

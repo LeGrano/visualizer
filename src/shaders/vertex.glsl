@@ -1,18 +1,4 @@
-// varying vec2 vUv;
-// varying vec3 vNormal;
-// uniform float uTime;
-// uniform float uAudioFrequency;
-
-// void main() {
-//     vUv = uv;
-//     vNormal = normalize(normalMatrix * normal);
-
-//     float displacement = uAudioFrequency * 0.5;
-//     vec3 newPosition = position + normal * displacement;
-
-//     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
-// }
-
+//// Les coordonnées de texture et la valeur de motif (pattern) ainsi que les unfiorms
 varying vec2 vUv;
 varying float vPattern;
 uniform float uTime;
@@ -27,12 +13,11 @@ float hash( in vec2 p )
     return fract(sin(p.x*15.32+p.y*5.78) * 43758.236237153);
 }
 
-
 vec2 hash2(vec2 p)
 {
     return vec2(hash(p*.754),hash(1.5743*p.yx+4.5891))-.5;
 }
-// Gabor/Voronoi mix 3x3 kernel (some artifacts for v=1.)
+// Bruit govornoi pour le pattern
 float gavoronoi3(in vec2 p)
 {    
     vec2 ip = floor(p);
@@ -45,7 +30,7 @@ float gavoronoi3(in vec2 p)
     float wt = 0.0;
     for (int i=-1; i<=1; i++) 
     for (int j=-1; j<=1; j++) 
-    {       
+    {
         vec2 o = vec2(i, j)-.5;
         vec2 h = hash2(ip - o);
         vec2 pp = fp +o;
@@ -75,11 +60,15 @@ vec3 nor(in vec2 p)
         1.0));
 }
 
+//Modifie l'aspet de la sphere selon l'uniform uAudioFrequency (la frquence moyenne) et la valeur de pattern (vPattern).
+//Notamment la sphère s'étire selon la fréquence (displacement).
+//On crée aussi une lumière directement dans le shader.
+
 void main() {
     vec3 light = normalize(vec3(3., 2., -1.));
     float r = dot(nor(uv), light);
     vec3 normal = normalize(nor(uv))/3.0;
-    float displacement = clamp(1.0 - r, 0.0, 0.2) +uAudioFrequency;
+    float displacement = clamp(1.0 - r, 0.0, 0.2) +uAudioFrequency * 2.0;
     vec3 newPosition = position + normal * displacement;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1);
     

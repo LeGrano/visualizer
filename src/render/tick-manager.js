@@ -39,17 +39,13 @@ class TickManager extends EventTarget {
 
             const timeDiffCapped = Math.min(Math.max(this.timeDiff, 0), 100);
 
-            // performance tracker start
+           
 
             controls.update();
 
             composer.render();
-            // renderer.render(scene, camera);
 
             this.tick(timestamp, timeDiffCapped, frame);
-
-
-            // performance tracker end
         };
 
         renderer.setAnimationLoop(animate);

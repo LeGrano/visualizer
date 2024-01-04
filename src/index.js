@@ -4,6 +4,10 @@ import startVisualizer from './app';
 import startAccueilSpotify from './spotify'
 import { initEngine } from './render/init';
 
+/**
+ * Fichier js pour lancer l'application avec webpack.
+ * Verifie si on est sur la page visualizer.html et si on a bien un audio dans l'url. Si non on lance la page d'accueil Spotify.
+ */
 (async () => {
    
     const urlParams = new URLSearchParams(window.location.search);
